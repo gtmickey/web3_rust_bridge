@@ -8,6 +8,7 @@ crate-type = ["cdylib", "staticlib"]
 
 [dependencies]
 flutter_rust_bridge = "=2.0.0-dev.32"
+openssl = { version = "0.10", features = ["vendored"] }
 
 
 [dependencies.snarkvm-console]
