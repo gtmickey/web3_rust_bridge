@@ -3,3 +3,6 @@
 //
 
 pub mod simple;
+pub mod aleo;
+
+type CurrentNetwork = snarkvm_console::network::Testnet3;

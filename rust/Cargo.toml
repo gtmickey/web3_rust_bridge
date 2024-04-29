@@ -8,3 +8,34 @@ crate-type = ["cdylib", "staticlib"]
 
 [dependencies]
 flutter_rust_bridge = "=2.0.0-dev.32"
+
+
+[dependencies.snarkvm-console]
+version = "=0.16.19"
+
+[dependencies.snarkvm-circuit]
+version = "=0.16.19"
+
+
+[dependencies.hex]
+version = "0.4.3"
+
+
+[dependencies.anyhow]
+version = "1.0.82"
+
+
+[dependencies.rand]
+version = "0.8.5"
+
+
+
+## Profiles
+[profile.release]
+opt-level = 3
+lto = true
+
+[profile.dev]
+opt-level = 3
+lto = "thin"
+incremental = true
