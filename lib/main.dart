@@ -64,12 +64,30 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(title: const Text('web3_rust_bridge')),
-        body: Column(
+        body: ListView(
           children: [
             Text("privateKey: $privateKey"),
+            const Divider(),
             Text("viewKey: ${privateKeyToViewKey(privateKey: privateKey)}"),
+            const Divider(),
             Text("address: ${privateKeyToAddress(privateKey: privateKey)}"),
-            Text("signMessage: ${signMessage(messageBytes:[0],privateKey: privateKey)}"),
+            const Divider(),
+            Text("signMessage: ${signMessage(messageBytes: [
+                  0
+                ], privateKey: privateKey)}"),
+            const Divider(),
+            FutureBuilder(
+                future: genDelegateData(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: snapshot.data!.map((e) => Text(e)).toList(),
+                    );
+                  } else {
+                    return const Text("generating");
+                  }
+                })
           ],
         ),
       ),
@@ -78,5 +96,15 @@ class _MyAppState extends State<MyApp> {
 
   void genPrivateKey() {
     privateKey = privateKeyFromSeed(seed: testSeed);
+  }
+
+  Future<List<String>> genDelegateData() async {
+    return await delegateTransferPublic(
+      privateKey: privateKey,
+      amountCredits: 0.001,
+      recipient:
+          "aleo19jjmsrusvuduyxgufd7ax24p2sp73eedx0agky7tzfa0su66wcgqlmqz4x",
+      feeCredits: 0.28,
+    );
   }
 }
