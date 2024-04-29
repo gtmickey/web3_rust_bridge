@@ -18,6 +18,10 @@ version = "=0.16.19"
 version = "=0.16.19"
 
 
+[dependencies.snarkvm-synthesizer]
+version = "=0.16.19"
+features = [ "async","program","process"]
+
 [dependencies.hex]
 version = "0.4.3"
 
