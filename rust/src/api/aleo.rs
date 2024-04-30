@@ -4,9 +4,10 @@ use anyhow::Context;
 use rand::rngs::StdRng;
 use rand::SeedableRng;
 use snarkvm_circuit::prelude::PrimeField;
-use snarkvm_circuit::PrivateKey;
-use snarkvm_console::program::{Environment, FromBytes, ToBytes};
+use snarkvm_console::network::Testnet3;
+use snarkvm_console::program::{Environment, FromBytes, Literal, ToBytes};
 
+use crate::aleo::AleoAPIClient;
 use crate::aleo::delegate::*;
 use crate::api::CurrentNetwork;
 
@@ -50,6 +51,23 @@ pub fn delegate_transfer_public(private_key: &String,
     return result;
 }
 
+pub fn get_public_balance(url: String, network_id: String, address: String) -> f64 {
+    let client = if url.is_empty() {
+        AleoAPIClient::testnet3()
+    } else {
+        AleoAPIClient::new(&url, &network_id).unwrap()
+    };
+    let public_address_literal = Literal::<Testnet3>::from_str(&address).unwrap();
+    let value = client.get_mapping_value("credits.aleo", "account", public_address_literal);
+
+    let value: u64 = value.unwrap().to_string()
+        .trim_end_matches("u64")
+        .parse()
+        .expect("Failed to parse string as u64");
+    let result = value as f64 / 100000.0;
+    return result;
+}
+
 
 mod test {
     use crate::api::aleo::*;
@@ -90,5 +108,14 @@ mod test {
         let result = Delegate::delegate_transfer_public(&private_key, 0.1, "aleo19jjmsrusvuduyxgufd7ax24p2sp73eedx0agky7tzfa0su66wcgqlmqz4x", 0.28);
 
         println!("result {:?}", result);
+    }
+
+    #[test]
+    fn test_get_public_balance() {
+        let balance = get_public_balance("".to_string(), "".to_string(), "aleo19jjmsrusvuduyxgufd7ax24p2sp73eedx0agky7tzfa0su66wcgqlmqz4x".to_string());
+        println!("balance {:?}", balance);
+
+        let balance = get_public_balance("https://api.explorer.aleo.org/v1".to_string(), "testnet3".to_string(), "aleo19jjmsrusvuduyxgufd7ax24p2sp73eedx0agky7tzfa0su66wcgqlmqz4x".to_string());
+        println!("balance {:?}", balance);
     }
 }

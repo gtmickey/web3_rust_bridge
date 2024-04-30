@@ -33,6 +33,9 @@ version = "1.0.82"
 [dependencies.rand]
 version = "0.8.5"
 
+[dependencies.ureq]
+features = [ "json" ]
+version = "2.9.7"
 
 ## Profiles
 [profile.release]
