@@ -42,7 +42,7 @@ pub fn sign_message(message_bytes: Vec<u8>, private_key: String) -> String {
 }
 
 
-pub fn delegate_transfer_public(private_key: &String,
+pub fn generate_public_transfer_delegate_data(private_key: &String,
                                 amount_credits: f64,
                                 recipient: String,
                                 fee_credits: f64, ) -> Vec<String> {
@@ -64,7 +64,7 @@ pub fn get_public_balance(url: String, network_id: String, address: String) -> f
         .trim_end_matches("u64")
         .parse()
         .expect("Failed to parse string as u64");
-    let result = value as f64 / 100000.0;
+    let result = value as f64 / 1_000_000.0;
     return result;
 }
 

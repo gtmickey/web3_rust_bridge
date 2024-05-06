@@ -99,7 +99,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<List<String>> genDelegateData() async {
-    return await delegateTransferPublic(
+    return await generatePublicTransferDelegateData(
       privateKey: privateKey,
       amountCredits: 0.001,
       recipient:

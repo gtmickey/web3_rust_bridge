@@ -31,7 +31,7 @@ flutter_rust_bridge::frb_generated_boilerplate!(
     default_rust_auto_opaque = RustAutoOpaqueMoi,
 );
 pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_VERSION: &str = "2.0.0-dev.32";
-pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_CONTENT_HASH: i32 = -1055553245;
+pub(crate) const FLUTTER_RUST_BRIDGE_CODEGEN_CONTENT_HASH: i32 = 466542519;
 
 // Section: executor
 
@@ -39,7 +39,7 @@ flutter_rust_bridge::frb_generated_default_handler!();
 
 // Section: wire_funcs
 
-fn wire_delegate_transfer_public_impl(
+fn wire_generate_public_transfer_delegate_data_impl(
     port_: flutter_rust_bridge::for_generated::MessagePort,
     ptr_: flutter_rust_bridge::for_generated::PlatformGeneralizedUint8ListPtr,
     rust_vec_len_: i32,
@@ -47,7 +47,7 @@ fn wire_delegate_transfer_public_impl(
 ) {
     FLUTTER_RUST_BRIDGE_HANDLER.wrap_normal::<flutter_rust_bridge::for_generated::SseCodec, _, _>(
         flutter_rust_bridge::for_generated::TaskInfo {
-            debug_name: "delegate_transfer_public",
+            debug_name: "generate_public_transfer_delegate_data",
             port: Some(port_),
             mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
         },
@@ -68,7 +68,7 @@ fn wire_delegate_transfer_public_impl(
             deserializer.end();
             move |context| {
                 transform_result_sse((move || {
-                    Result::<_, ()>::Ok(crate::api::aleo::delegate_transfer_public(
+                    Result::<_, ()>::Ok(crate::api::aleo::generate_public_transfer_delegate_data(
                         &api_private_key,
                         api_amount_credits,
                         api_recipient,
@@ -374,7 +374,7 @@ fn pde_ffi_dispatcher_primary_impl(
 ) {
     // Codec=Pde (Serialization + dispatch), see doc to use other codecs
     match func_id {
-        5 => wire_delegate_transfer_public_impl(port, ptr, rust_vec_len, data_len),
+        5 => wire_generate_public_transfer_delegate_data_impl(port, ptr, rust_vec_len, data_len),
         6 => wire_get_public_balance_impl(port, ptr, rust_vec_len, data_len),
         8 => wire_init_app_impl(port, ptr, rust_vec_len, data_len),
         _ => unreachable!(),

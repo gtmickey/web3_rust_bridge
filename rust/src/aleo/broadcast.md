@@ -1,5 +1,5 @@
 ## send data to remote to proof
-
+```sh
 curl --location 'https://testnet3.aleorpc.com' \
 --header 'Content-Type: application/json' \
 --data '{
@@ -130,6 +130,9 @@ arguments: [\\n    aleo1m8gqcxedmqfp2ylh8f96w6n3z7zw0ucahenq0symvxpqg0f8sugqd4we
 }
 }'
 
+```
+
+
 return:
 
 ```json
@@ -151,7 +154,7 @@ curl --location 'https://testnet3.aleorpc.com' \
     "id": 1,
     "method": "getGeneratedTransaction",
     "params": {
-        "request_id": "3f985531-d15a-4c3a-9815-cb208d3e02b9"
+        "request_id": "e3ded361-b5c8-48c2-95a3-1b9602ba0f49"
     }
 }'
 
