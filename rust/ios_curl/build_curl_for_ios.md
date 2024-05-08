@@ -72,6 +72,10 @@ make install
   }
 ```
 
+真机选择 rust/ios_curl/artifacts-iphoneos/xcode_lib
+模拟器选择 rust/ios_curl/artifacts-iphonesimulator/xcode_lib
+
+artifacts-iphonesimulator_arm64 仅包含一种架构，artifacts-iphonesimulator包含了 arm64和x86_64
 如果集成的是dylib
 
 修改 dylib的 install_name：
