@@ -95,6 +95,8 @@ otool -L libcurl.4.dylib 查看是否修改成功
 
 运行是根据 对应 ios模拟器或者 真机修改 rust/build.rs 的配置
 
+库架构分析方法 otool -L 二进制文件
+
 
 
 
