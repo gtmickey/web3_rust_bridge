@@ -9,5 +9,5 @@ fn main() {
 
 
     //  编译 ios真机时 打开这个注释 cargo lipo --targets aarch64-apple-ios --release
-    println!("cargo:rustc-link-search=native=./ios_curl/artifacts-iphoneos/lib");
+    // println!("cargo:rustc-link-search=native=./ios_curl/artifacts-iphoneos/lib");
 }

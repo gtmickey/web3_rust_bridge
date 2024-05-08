@@ -37,7 +37,7 @@ class Environment {
   /// List of architectures to build for (arm64, armv7, x86_64).
   static List<String> get darwinArchs {
     final r = _getEnv("CARGOKIT_DARWIN_ARCHS").split(' ');
-    r.remove("x86_64");
+    // r.remove("x86_64");
     return r;
   }
 
